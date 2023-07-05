@@ -3,7 +3,8 @@ import React from 'react'
 import Image from "next/image";
 import { Link } from "react-scroll/modules";
 import { HiArrowDown } from "react-icons/hi";
-import {useState,useEffect} from 'react'
+import {useEffect} from 'react'
+import Typed from 'typed.js';
 interface role {
     role : string;
 }
@@ -15,9 +16,21 @@ const roles: Array<role> = [
 ];
 
 const Hero = () => {
-    const [pos,setPos] = useState('FullStack Developer')
+    const el = React.useRef(null);
     useEffect(()=>{
-        // dynamic roles
+        const typed = new Typed(el.current, {
+          strings: [
+            "Fullstack Developer.",
+            "UI/UX Designer.",
+            "DSA Enthusiast🚀.",
+            "Learner.",
+            "Fullstack Web Developer.",
+          ],
+          typeSpeed: 50,
+        });
+        return () => {
+          typed.destroy();
+        };
     },[])
    
   return (
@@ -37,12 +50,11 @@ const Hero = () => {
             Hi, I&#39;m Atharva!
           </h1>
           <p className="text-lg mt-4 mb-6 md:text-2xl">
-            I&#39;m a{" "}
-            <span className="font-semibold text-teal-600">
-              {pos}{" "}
-            </span>
-            based in Pune, India. Working towards creating software that
-            makes life easier and more meaningful.
+            <h3 className='text-3xl py-4'>
+            I&#39;m a <span ref={el} className="font-semibold text-teal-600" />{" "}
+            </h3>
+            Working towards creating software that makes
+            life easier and more meaningful.
           </p>
           <Link
             to="projects"
