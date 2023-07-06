@@ -35,13 +35,14 @@ const projects = [
 const Project = () => {
   return (
     <section id="projects">
-      <div className="my-12 md:py-12">
-        <div className="mt-12 pb-8 md:pt-16 md:pb-28 text-center">
-          <h1 className="text-center font-bold text-4xl">
-            Projects
-            <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
-          </h1>
-        </div>
+      <div className="my-12 pb-16">
+        {/* <div className="md:pt-16 md:pb-28 text-center"> */}
+        <h1 className="text-center font-bold text-4xl py-16">
+          Projects
+          <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
+        </h1>
+        {/* </div> */}
+
         <div className="flex flex-col space-y-32">
           {projects.map((project, idx) => {
             return (
@@ -88,7 +89,7 @@ const Project = () => {
           })}
         </div>
       </div>
-      <Scroll page='contact'/>
+      <Scroll page="contact" />
     </section>
   );
 };
