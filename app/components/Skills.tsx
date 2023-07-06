@@ -1,6 +1,7 @@
 "use client";
 import React from 'react'
 import Image from 'next/image';
+import Scroll from './Scroll';
 
 const skills = [
   { skill: "html", img: "/assets/html.png" },
@@ -15,37 +16,32 @@ const skills = [
   { skill: "chakraui", img: "/assets/chakraui.png" },
   { skill: "cpp", img: "/assets/cpp.png" },
   { skill: "express", img: "/assets/express.png" },
-//   { skill: "hadoop", img: "/assets/hadoop.png" },
   { skill: "java", img: "/assets/java.png" },
   { skill: "jupyter", img: "/assets/jupyter.png" },
-//   { skill: "matplotlib", img: "/assets/matplotlib.png" },
   { skill: "mongodb", img: "/assets/mongodb.png" },
   { skill: "mysql", img: "/assets/mysql.png" },
   { skill: "next", img: "/assets/next.png" },
   { skill: "node", img: "/assets/node.png" },
-//   { skill: "numpy", img: "/assets/numpy.png" },
-//   { skill: "pandas", img: "/assets/pandas.png" },
   { skill: "postman", img: "/assets/postman.png" },
   { skill: "python", img: "/assets/python.png" },
-  { skill: "reactrouter", img: "/assets/reactrouter.png" },
   { skill: "redux", img: "/assets/redux.png" },
-//   { skill: "seaborn", img: "/assets/seaborn.png" },
-//   { skill: "tableau", img: "/assets/tableau.png" },
   { skill: "tailwind", img: "/assets/tailwind.png" },
   { skill: "vite", img: "/assets/vite.png" },
   { skill: "vscode", img: "/assets/vscode.png" },
   { skill: "zustand", img: "/assets/zustand.png" },
+  { skill: "figma", img: "/assets/figma.png" },
+  { skill: "canva", img: "/assets/canva.png" },
 ];
 
 const Skills = () => {
   return (
     <section id="skill">
-      <div className="my-12 pb-8 md:pt-16 md:pb-28 text-center">
+      <div className="mt-12 md:pt-16 md:pb-28 text-center">
         <h1 className="text-center font-bold text-4xl">
           Skills
           <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
         </h1>
-        <div className="text-center ">
+        <div className="text-center mt-12">
           <div className="flex flex-wrap flex-row justify-center z-10 md:justify-start">
             {skills.map((item, idx) => {
               return (
@@ -55,9 +51,9 @@ const Skills = () => {
                 >
                   <Image
                     src={item.img}
-                    alt=""
-                    width={70}
-                    height={70}
+                    alt={item.skill}
+                    width={60}
+                    height={60}
                     className="rounded-full shadow-2xl"
                   />
                 </p>
@@ -66,6 +62,7 @@ const Skills = () => {
           </div>
         </div>
       </div>
+      <Scroll page='projects'/>
     </section>
   );
 }
