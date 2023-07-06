@@ -2,9 +2,9 @@
 import React from 'react'
 import Image from "next/image";
 import { Link } from "react-scroll/modules";
-import { HiArrowDown } from "react-icons/hi";
 import {useEffect} from 'react'
 import Typed from 'typed.js';
+import Scroll from './Scroll';
 interface role {
     role : string;
 }
@@ -69,18 +69,7 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-      <div className="flex flex-row items-center text-center justify-center ">
-        <Link
-          to="about"
-          activeClass="active"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={500}
-        >
-          <HiArrowDown size={35} className="animate-bounce" />
-        </Link>
-      </div>
+      <Scroll page='about'/>
     </section>
   );
 }
