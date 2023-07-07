@@ -5,6 +5,7 @@ import { Link } from "react-scroll/modules";
 import {useEffect} from 'react'
 import Typed from 'typed.js';
 import Scroll from './Scroll';
+
 interface role {
     role : string;
 }
@@ -35,14 +36,15 @@ const Hero = () => {
    
   return (
     <section id="home">
-      <div className="flex flex-col text-center items-center justify-center animate-fadeIn animation-delay-2 my-10 py-16 sm:py-32 md:py-48 md:pb-28 md:flex-row md:space-x-4 md:text-left">
+      <div className="flex flex-col text-center items-center justify-center animate-fadeIn animation-delay-2 my-8 py-12 sm:py-32 md:py-48 md:pb-16 md:flex-row md:space-x-4 md:text-left">
         <div className="md:mt-2 md:w-1/2">
           <Image
             src="/piccc-modified.png"
             alt=""
-            width={325}
-            height={325}
-            className="rounded-full shadow-2xl"
+            id="img"
+            width={400}
+            height={400}
+            className="rounded-full p-12 shadow-2xl"
           />
         </div>
         <div className="md:mt-2 md:w-3/5">
@@ -50,11 +52,12 @@ const Hero = () => {
             Hi, I&#39;m Atharva!
           </h1>
           <p className="text-lg mt-4 mb-6 md:text-2xl">
-            <h3 className='text-3xl py-4'>
-            I&#39;m a <span ref={el} className="font-semibold text-teal-600" />{" "}
+            <h3 className="text-3xl py-4">
+              I&#39;m a{" "}
+              <span ref={el} className="font-semibold text-teal-600" />{" "}
             </h3>
-            Working towards creating software that makes
-            life easier and more meaningful.
+            Working towards creating software that makes life easier and more
+            meaningful.
           </p>
           <Link
             to="projects"
@@ -69,7 +72,7 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-      <Scroll page='about'/>
+      <Scroll page="about" />
     </section>
   );
 }
