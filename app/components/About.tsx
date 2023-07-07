@@ -44,7 +44,7 @@ const About = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="py-3 px-5 hover:-translate-y-1 text-md text-neutral-50 font-medium text-center rounded-lg bg-teal-600 sm:w-fit hover:bg-teal-700 "
+            className="py-3 px-5 text-md text-neutral-50 font-medium text-center rounded-lg bg-teal-600 sm:w-fit hover:bg-teal-700 "
           >
             <a href={resume} rel="noreferrer" target="_blank">
               {"< "} Resume {" />"}

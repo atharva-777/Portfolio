@@ -54,7 +54,7 @@ const Skills = () => {
                     alt={item.skill}
                     width={60}
                     height={60}
-                    className="rounded-full shadow-2xl"
+                    className="rounded-full shadow-2xl hover:-translate-y-2"
                   />
                 </p>
               );
