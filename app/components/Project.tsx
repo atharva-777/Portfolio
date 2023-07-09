@@ -6,11 +6,14 @@ import SlideUp from "./SlideUp";
 import { BsGithub, BsArrowUpRightSquare } from "react-icons/bs";
 import Scroll from "./Scroll";
 
+
+
+
 const projects = [
   {
     name: "Trello Clone",
     description:
-      "ThankfulThoughts is a web app that generates an appreciative sentence of something or someone you are thankful for.",
+      "A web-based task management application, using Next.js, Appwrite Cloud, and React Beautiful DND. User-friendly application inspired by Trello's board and card-based organization system.",
     image: "/assets/trelloclone.png",
     github: "https://github.com/atharva-777/Trello",
     link: "https://github.com/atharva-777/Trello",
