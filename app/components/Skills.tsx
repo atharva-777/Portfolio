@@ -45,16 +45,13 @@ const Skills = () => {
           <div className="flex flex-wrap flex-row justify-center z-10 md:justify-start">
             {skills.map((item, idx) => {
               return (
-                <p
-                  key={idx}
-                  className="md:space-x-2 m-2 p-4"
-                >
+                <p key={idx} className="md:space-x-2 m-2 p-4">
                   <Image
                     src={item.img}
                     alt={item.skill}
                     width={60}
                     height={60}
-                    className="rounded-full shadow-2xl hover:-translate-y-2"
+                    className="rounded-none shadow-2xl hover:-translate-y-2"
                   />
                 </p>
               );

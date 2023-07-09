@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
+import React, { MutableRefObject } from "react";
 import emailjs from '@emailjs/browser'
 import { useState,useRef } from "react";
 
 const Contact = () => {
 
-   const formRef = useRef();
+   const formRef = useRef(null);
    const [form, setForm] = useState({
      name: "",
      email: "",
@@ -126,7 +126,8 @@ const Contact = () => {
               type="submit"
               className="py-3 px-5 text-md font-medium text-center text-black rounded-lg bg-primary-700 bg-green-400/80 sm:w-fit hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
-              Let&#39;s Talk
+              {loading===false ? `Let's Talk`:'Sending'}
+              {/* Let&#39;s Talk */}
             </button>
           </div>
         </form>
