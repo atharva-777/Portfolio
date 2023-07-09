@@ -1,32 +1,66 @@
 "use client";
 import React from "react";
-import useContactForm from "../hooks/useContactForm ";
-import sendEmail from "../sendEmail";
+import emailjs from '@emailjs/browser'
+import { useState,useRef } from "react";
 
 const Contact = () => {
-  const { values, handleChange } = useContactForm();
-  const setResponseMessage = (data: { isSuccessful: boolean; message: string; }) => {
-    alert(data.message)
-  }
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    try {
-      const req = await sendEmail(values.email, values.name, values.message);
-      if (req.status === 250) {
-        setResponseMessage({
-          isSuccessful: true,
-          message: "Thank you for your message.",
-        });
-      }
-    } catch (e) {
-      console.log(e);
-      setResponseMessage({
-        isSuccessful: false,
-        message: "Oops something went wrong. Please try again.",
-      });
-    }
 
-  };
+   const formRef = useRef();
+   const [form, setForm] = useState({
+     name: "",
+     email: "",
+     message: "",
+   });
+
+    const [loading, setLoading] = useState(false);  
+
+    const handleChange = (e: { target: any; }) => {
+      const { target } = e;
+      const { name, value } = target;
+
+      setForm({
+        ...form,
+        [name]: value,
+      });
+    };
+
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
+      e.preventDefault();
+      setLoading(true);
+      emailjs
+        .send(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+
+          {
+            from_name: form.name,
+            to_name: "Atharva Jadhav",
+            from_email: form.email,
+            to_email: process.env.NEXT_PUBLIC_EMAIL_ID,
+            message: form.message,
+          },
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          () => {
+            setLoading(false);
+            alert("Thank you. I will get back to you as soon as possible.");
+
+            setForm({
+              name: "",
+              email: "",
+              message: "",
+            });
+          },
+          (error) => {
+            setLoading(false);
+            console.error(error);
+
+            alert("Ahh, something went wrong. Please try again.");
+          }
+        );
+    };
+
   return (
     <section id="contact">
       <div className="mt-12 py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
@@ -37,15 +71,21 @@ const Contact = () => {
         <p className="mb-6 lg:mb-10 font-light text-center sm:text-xl">
           Ready to bring your project to life? Let&#39;s connect!
         </p>
-        <form action="#" onSubmit={handleSubmit} className="space-y-8">
+        <form
+          action="#"
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="space-y-8"
+        >
           <div>
             <label htmlFor="text" className="block mb-2 text-md font-medium">
               Name
             </label>
             <input
               type="text"
+              name="name"
               id="name"
-              value={values.name}
+              value={form.name}
               onChange={handleChange}
               className="shadow-sm bg-slate-200/80 text-slate-800 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-4 dark:placeholder-slate-600/100"
               placeholder="Atharva Jadhav"
@@ -58,8 +98,9 @@ const Contact = () => {
             </label>
             <input
               type="email"
+              name="email"
               id="email"
-              value={values.email}
+              value={form.email}
               onChange={handleChange}
               className="shadow-sm bg-slate-200/80 text-slate-800 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-4 dark:placeholder-slate-600/100"
               placeholder="name@gmail.com"
@@ -72,8 +113,9 @@ const Contact = () => {
             </label>
             <textarea
               id="message"
+              name="message"
               rows={2}
-              value={values.message}
+              value={form.message}
               onChange={handleChange}
               className="shadow-sm bg-slate-200/80 text-slate-800 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-4 dark:placeholder-slate-600/100"
               placeholder="Leave a comment..."
