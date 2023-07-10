@@ -5,3 +5,15 @@
 /* #img {
     -webkit-mask:url(../public/assets/profile.png) center/contain no-repeat;
 } */
+
+/* body{
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+} */
+
+@media (prefers-color-scheme: dark) {
+    .dark\:bg-stone-900 {
+        --tw-bg-opacity: 1;
+        background-color: rgb(28 25 23 / var(--tw-bg-opacity));
+    }
+}

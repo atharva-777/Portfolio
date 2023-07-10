@@ -53,7 +53,7 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   return (
     <header
-      className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-stone-900 dark:border-stone-600
+      className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white  border-b-2 dark:bg-stone-900 border-stone-600
       "
     >
       <div className="justify-between md:items-center md:flex">
@@ -68,7 +68,7 @@ const Navbar = () => {
               duration={500}
             >
               <div className="container flex items-center space-x-2">
-                <h2 className="text-2xl font-bold dark:text-neutral-100 hover:cursor-pointer">
+                <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 hover:cursor-pointer">
                   Atharva Jadhav
                 </h2>
               </div>
@@ -122,7 +122,7 @@ const Navbar = () => {
                   onClick={() => setTheme("dark")}
                   className="bg-slate-100 p-2 rounded-xl"
                 >
-                  <RiMoonFill size={25} />
+                  <RiMoonFill size={25} color="black"/>
                 </button>
               )}
             </div>
