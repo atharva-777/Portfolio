@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Scroll from "./Scroll";
-const resume = process.env.NEXT_PUBLIC_RESUME_LINK
+const resume =
+  "https://drive.google.com/file/d/15QgDfGIrQ0qEzyokd2QJk_gmCHuzSUL8/view?usp=drive_link";
 
 const About = () => {
   return (
