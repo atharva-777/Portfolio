@@ -44,17 +44,23 @@ const navContent: Array<navItem> = [
     page: "contact",
     show: true,
   },
+  {
+    label: 'Blogs',
+    page: 'posts',
+    show: false,
+  }
 ];
 
 const Navbar = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
+  const { theme, setTheme } = useTheme();
+  const currentTheme = theme;
   const pathName = usePathname();
   const [navbar, setNavbar] = useState(false);
   return (
     <header
-      className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white  border-b-2 dark:bg-stone-900 border-stone-600
-      "
+      // className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white  border-b-2 dark:bg-stone-900 border-stone-600
+      // "
+      className="w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 shadow border-b-2"
     >
       <div className="justify-between md:items-center md:flex">
         <div>
@@ -110,6 +116,8 @@ const Navbar = () => {
                   </Link>
                 ) : null;
               })}
+
+
               {currentTheme === "dark" ? (
                 <button
                   onClick={() => setTheme("light")}
@@ -122,9 +130,10 @@ const Navbar = () => {
                   onClick={() => setTheme("dark")}
                   className="bg-slate-100 p-2 rounded-xl"
                 >
-                  <RiMoonFill size={25} color="black"/>
+                  <RiMoonFill size={25} color="black" />
                 </button>
               )}
+
             </div>
           </div>
         </div>
