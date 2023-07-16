@@ -124,9 +124,9 @@ const Contact = () => {
           <div className="text-end">
             <button
               type="submit"
-              className="py-3 px-5 text-md font-medium text-center text-black rounded-lg bg-primary-700 bg-green-400/80 sm:w-fit hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              className="py-3 px-5 text-md font-bold hover:text-black text-center rounded-lg bg-primary-700 border-y-2 border-x-2 border-green-500 hover:translate-x-2 sm:w-fit hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
-              {loading===false ? `Let's Talk`:'Sending'}
+              {loading===false ? `Send Email`:'Sending'}
               {/* Let&#39;s Talk */}
             </button>
           </div>
