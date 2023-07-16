@@ -42,10 +42,7 @@ const Skills = () => {
               key={idx}
               className="flex flex-col text-center m-4 transition-all duration-300 ease-in-out"
             >
-              <div
-                className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-ctp-crust shadow-lg grid place-items-center hover:-translate-y-2 transition-all duration-200"
-                // style={{ backgroundColor: skill.bgColor }}
-              >
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-ctp-crust shadow-lg grid place-items-center hover:-translate-y-2 transition-all duration-200  ">
                 <Image
                   src={item.img}
                   height={50}
