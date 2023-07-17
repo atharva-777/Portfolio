@@ -6,5 +6,5 @@ export interface blog{
     slug:{
         current:string;
     }
-    __createdAt:string;
+    _createdAt:string;
 }
