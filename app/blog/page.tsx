@@ -5,7 +5,6 @@ import { client } from "../lib/sanity";
 import Link from "next/link";
 import { blog } from "../lib/interface";
 async function getData() {
-    console.log('requesting data')
   const query = `*[_type=='blog']`;
   const data = await client.fetch(query);
   return data;
