@@ -1,7 +1,9 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-scroll/modules";
+// import { Link } from "react-scroll/modules";
+import {Link as _link} from 'react-scroll/modules'
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { RiMoonFill, RiSunLine } from "react-icons/ri";
@@ -44,11 +46,11 @@ const navContent: Array<navItem> = [
     page: "contact",
     show: true,
   },
-  {
-    label: 'Blogs',
-    page: 'posts',
-    show: false,
-  }
+  // {
+  //   label: 'Blog',
+  //   page: 'blog',
+  //   show: true,
+  // }
 ];
 
 const Navbar = () => {
@@ -65,7 +67,7 @@ const Navbar = () => {
       <div className="justify-between md:items-center md:flex">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link
+            <_link
               to="home"
               activeClass="active"
               spy={true}
@@ -78,7 +80,7 @@ const Navbar = () => {
                   Atharva Jadhav
                 </h2>
               </div>
-            </Link>
+            </_link>
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -99,7 +101,7 @@ const Navbar = () => {
             <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {navContent.map((item, idx) => {
                 return item.show === true ? (
-                  <Link
+                  <_link
                     key={idx}
                     to={item.page}
                     className={
@@ -113,10 +115,11 @@ const Navbar = () => {
                     onClick={() => setNavbar(!navbar)}
                   >
                     {item.label}
-                  </Link>
+                  </_link>
                 ) : null;
               })}
 
+              <Link href='/blog'>Blog</Link>
 
               {currentTheme === "dark" ? (
                 <button
