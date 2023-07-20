@@ -2,7 +2,7 @@
 import React from "react";
 import emailjs from '@emailjs/browser'
 import { useState,useRef } from "react";
-
+import toast,{Toaster} from 'react-hot-toast'
 const Contact = () => {
 
    const formRef = useRef(null);
@@ -44,7 +44,7 @@ const Contact = () => {
         .then(
           () => {
             setLoading(false);
-            alert("Thank you. I will get back to you as soon as possible.");
+            toast.success('Message Submitted Successfully')
 
             setForm({
               name: "",
@@ -55,8 +55,7 @@ const Contact = () => {
           (error) => {
             setLoading(false);
             console.error(error);
-
-            alert("Ahh, something went wrong. Please try again.");
+            toast.error('Something went wrong')
           }
         );
     };
