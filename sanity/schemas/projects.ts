@@ -1,34 +1,37 @@
 export default {
-  name: 'blog',
+  name: 'project',
   type: 'document',
-  title: 'Blog',
+  title: 'Projects',
   fields: [
     {
       name: 'title',
       type: 'string',
-      title: 'Title',
-    },
-    { 
-      name: 'description',
-      type: 'string',
-      title: 'Description',
+      title: 'Project Title',
     },
     {
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug',
-      options: {
-        source: 'title', 
-      }
+      name: 'description',
+      type: 'string',
+      title: 'Project Description',
+    },
+    {
+      name: 'links',
+      type: 'array',
+      title: 'Project Links',
+      of: [
+        {
+          type: 'url',
+          validation: (Rule:any) =>
+            Rule.uri({
+              scheme: ['http', 'https', 'mailto', 'tel'],
+            }),
+        },
+      ],
     },
     {
       name: 'content',
       type: 'array',
-      title: 'Content',
+      title: 'Project Image',
       of: [
-        {
-          type: 'block',
-        },
         {
           type: 'image',
           fields: [
