@@ -20,7 +20,7 @@ export default {
       of: [
         {
           type: 'url',
-          validation: (Rule:any) =>
+          validation: (Rule: any) =>
             Rule.uri({
               scheme: ['http', 'https', 'mailto', 'tel'],
             }),
@@ -43,6 +43,38 @@ export default {
           ],
         },
       ],
+    },
+
+    {
+      name: 'blockWithLogo',
+      title: 'Block with Logo, Name, and URL',
+      type: 'object',
+      fields: [
+        {
+          name: 'logo',
+          title: 'Logo Image',
+          type: 'image', 
+          options: {
+            hotspot: true, 
+          },
+        },
+        {
+          name: 'name',
+          title: 'Name',
+          type: 'string',
+        },
+        {
+          name: 'url',
+          title: 'URL',
+          type: 'url',
+        },
+      ],
+      preview: {
+        select: {
+          title: 'name',
+          media: 'logo',
+        },
+      },
     },
   ],
 }
