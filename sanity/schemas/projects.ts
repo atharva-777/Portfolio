@@ -14,20 +14,6 @@ export default {
       title: 'Project Description',
     },
     {
-      name: 'links',
-      type: 'array',
-      title: 'Project Links',
-      of: [
-        {
-          type: 'url',
-          validation: (Rule: any) =>
-            Rule.uri({
-              scheme: ['http', 'https', 'mailto', 'tel'],
-            }),
-        },
-      ],
-    },
-    {
       name: 'content',
       type: 'array',
       title: 'Project Image',
@@ -46,35 +32,66 @@ export default {
     },
 
     {
-      name: 'blockWithLogo',
-      title: 'Block with Logo, Name, and URL',
-      type: 'object',
-      fields: [
+      name: 'all_links',
+      type: 'array',
+      title: 'Project Links',
+      of: [
         {
-          name: 'logo',
-          title: 'Logo Image',
-          type: 'image', 
-          options: {
-            hotspot: true, 
+          type: 'object',
+          fields: [
+            {
+              name: 'logo',
+              title: 'Logo Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+            },
+            {
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+            },
+            {
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'name',
+              media: 'logo',
+            },
           },
         },
+      ],
+    },
+
+    {
+      name: 'technologies',
+      type: 'array',
+      title: 'Tech stack',
+      of: [
         {
-          name: 'name',
-          title: 'Name',
-          type: 'string',
-        },
-        {
-          name: 'url',
-          title: 'URL',
-          type: 'url',
+          type: 'object',
+          fields: [
+            {
+              name: 'logo',
+              title: 'Logo Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+            },
+            {
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+            },
+          ],
         },
       ],
-      preview: {
-        select: {
-          title: 'name',
-          media: 'logo',
-        },
-      },
     },
   ],
 }
