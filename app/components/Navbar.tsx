@@ -62,7 +62,7 @@ const Navbar = () => {
     <header
       // className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white  border-b-2 dark:bg-stone-900 border-stone-600
       // "
-      className="w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 shadow border-b-2"
+      className="w-full mx-auto px-4 sm:px-20 fixed dark:bg-slate-900/40 backdrop-blur-md top-0 z-50 shadow border-b-2"
     >
       <div className="justify-between md:items-center md:flex">
         <div>
