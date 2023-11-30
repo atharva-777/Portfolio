@@ -1,5 +1,3 @@
-// "use client";
-// import { useState, useEffect } from "react";
 import { AiFillBackward } from "react-icons/ai";
 import { client } from "../lib/sanity";
 import Link from "next/link";

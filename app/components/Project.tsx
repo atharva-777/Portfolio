@@ -5,38 +5,20 @@ import Link from "next/link";
 import SlideUp from "./SlideUp";
 import { BsGithub, BsArrowUpRightSquare } from "react-icons/bs";
 import Scroll from "./Scroll";
+import { client } from "../lib/sanity";
+import { ProjectType } from "../lib/interface";
 
 
+ const fetchProjects = async () => {
+   const query = `*[_type=='project']`;
+   const projects = await client.fetch(query);
+   return projects;
+ };
 
+const Project = async () => {
 
-const projects = [
-  {
-    name: "Trello Clone",
-    description:
-      "A web-based task management application, using Next.js, Appwrite Cloud, and React Beautiful DND. User-friendly application inspired by Trello's board and card-based organization system.",
-    image: "/assets/trelloclone.png",
-    github: "https://github.com/atharva-777/Trello",
-    link: "https://github.com/atharva-777/Trello",
-  },
-  {
-    name: "LexiMind",
-    description:
-      "An innovative web application built using React and Vite, which utilizes the GPT-3 API from Rapid API to provide automated article summarization",
-    image: "/assets/leximind.png",
-    github: "https://github.com/atharva-777/LexiMind",
-    link: "https://github.com/atharva-777/LexiMind",
-  },
-  {
-    name: "ChatGenius",
-    description:
-      "A robust chat web application built using React, Redux, and Redux Toolkit, with seamless integration of the React Chat Engine API. Allows users to engage in real-time chat conversations with other users as well as an AI-powered chatbot",
-    image: "/assets/chatgenius.png",
-    github: "https://github.com/atharva-777/openai_project",
-    link: "https://github.com/atharva-777/openai_project",
-  },
-];
+  const projects = (await fetchProjects()) as ProjectType;
 
-const Project = () => {
   return (
     <section id="projects">
       <div className="my-12 pb-16">
@@ -54,9 +36,9 @@ const Project = () => {
                 <SlideUp offset="-300px 0px -300px 0px">
                   <div className="flex flex-col  animate-slideUpCubiBezier animation-delay-2 space-y-6 md:flex-row md:space-x-12">
                     <div className=" md:w-1/2">
-                      <Link href={project.link}>
+                      <Link href={project.all_links[0].url}>
                         <Image
-                          src={project.image}
+                          src={''}
                           alt=""
                           width={1000}
                           height={1000}
@@ -66,19 +48,19 @@ const Project = () => {
                     </div>
                     <div className="md:w-1/2">
                       <h1 className="text-4xl font-bold mb-6">
-                        {project.name}
+                        {project.title}
                       </h1>
                       <p className="text-xl leading-7 mb-4 text-neutral-500  dark:text-neutral-500">
                         {project.description}
                       </p>
                       <div className="flex flex-row align-bottom space-x-4">
-                        <Link href={project.github} target="_blank">
+                        <Link href={project.all_links[1].url} target="_blank">
                           <BsGithub
                             size={30}
                             className="hover:-translate-y-1 transition-transform cursor-pointer"
                           />
                         </Link>
-                        <Link href={project.link} target="_blank">
+                        <Link href={project.all_links[0].url} target="_blank">
                           <BsArrowUpRightSquare
                             size={30}
                             className="hover:-translate-y-1 transition-transform cursor-pointer"
