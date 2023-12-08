@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SlideUp from "./SlideUp";
@@ -7,17 +7,21 @@ import { BsGithub, BsArrowUpRightSquare } from "react-icons/bs";
 import Scroll from "./Scroll";
 import { client } from "../lib/sanity";
 import { ProjectType } from "../lib/interface";
+import { urlFor } from "../lib/sanityImageUrl";
 
+const fetchProjects = async () => {
+  const query = `*[_type=='project']`;
+  const projects = await client.fetch(query);
+  return projects;
+};
 
- const fetchProjects = async () => {
-   const query = `*[_type=='project']`;
-   const projects = await client.fetch(query);
-   return projects;
- };
+const imageParser = (value: string) => {
+  return urlFor(value).url();
+};
 
 const Project = async () => {
-
   const projects = (await fetchProjects()) as ProjectType;
+  // console.log(projects);
 
   return (
     <section id="projects">
@@ -38,7 +42,7 @@ const Project = async () => {
                     <div className=" md:w-1/2">
                       <Link href={project.all_links[0].url}>
                         <Image
-                          src={''}
+                          src={imageParser(project.content[0].asset._ref)}
                           alt=""
                           width={1000}
                           height={1000}
@@ -47,6 +51,20 @@ const Project = async () => {
                       </Link>
                     </div>
                     <div className="md:w-1/2">
+                      <div className="flex flex-row space-x-8">
+                        {project.technologies.map((technology, ind) => {
+                          return (
+                            <div key={ind}>
+                              <Image
+                                src={imageParser(technology.logo.asset._ref)}
+                                alt=""
+                                height={50}
+                                width={50}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
                       <h1 className="text-4xl font-bold mb-6">
                         {project.title}
                       </h1>
