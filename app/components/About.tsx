@@ -2,7 +2,7 @@
 import React from "react";
 import Scroll from "./Scroll";
 const resume =
-  "https://drive.google.com/file/d/15QgDfGIrQ0qEzyokd2QJk_gmCHuzSUL8/view?usp=drive_link";
+  "https://drive.google.com/file/d/1nsQny_Q41v13wdYl1ir9cai0IEd42-VH/view?usp=sharing";
 
 const About = () => {
   return (

@@ -4,7 +4,11 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Project from './components/Project'
 import Contact from './components/Contact'
-export default function Home() {
+import { fetchProjects } from './lib/fetchData'
+import { ProjectType } from './lib/interface'
+export default async function Home() {
+
+  const projects = (await fetchProjects()) as ProjectType;
   return (
     <main
       // className='mx-auto mx-w-3xl px-4 sm:px-6 md:max-w-5xl'
@@ -13,7 +17,7 @@ export default function Home() {
       <Hero />
       <About />
       <Skills />
-      <Project />
+      <Project projects={projects}/>
       <Contact />
     </main>
   );

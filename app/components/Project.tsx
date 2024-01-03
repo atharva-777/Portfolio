@@ -1,42 +1,24 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SlideUp from "./SlideUp";
 import { BsGithub, BsArrowUpRightSquare } from "react-icons/bs";
 import Scroll from "./Scroll";
+import { client } from "../lib/sanity";
+import { ProjectType } from "../lib/interface";
+import { urlFor } from "../lib/sanityImageUrl";
+import { fetchProjects } from "../lib/fetchData";
 
+const imageParser = (value: string) => {
+  return urlFor(value).url();
+};
 
+interface IProjectProps {
+  projects: ProjectType;
+}
 
-
-const projects = [
-  {
-    name: "Trello Clone",
-    description:
-      "A web-based task management application, using Next.js, Appwrite Cloud, and React Beautiful DND. User-friendly application inspired by Trello's board and card-based organization system.",
-    image: "/assets/trelloclone.png",
-    github: "https://github.com/atharva-777/Trello",
-    link: "https://github.com/atharva-777/Trello",
-  },
-  {
-    name: "LexiMind",
-    description:
-      "An innovative web application built using React and Vite, which utilizes the GPT-3 API from Rapid API to provide automated article summarization",
-    image: "/assets/leximind.png",
-    github: "https://github.com/atharva-777/LexiMind",
-    link: "https://github.com/atharva-777/LexiMind",
-  },
-  {
-    name: "ChatGenius",
-    description:
-      "A robust chat web application built using React, Redux, and Redux Toolkit, with seamless integration of the React Chat Engine API. Allows users to engage in real-time chat conversations with other users as well as an AI-powered chatbot",
-    image: "/assets/chatgenius.png",
-    github: "https://github.com/atharva-777/openai_project",
-    link: "https://github.com/atharva-777/openai_project",
-  },
-];
-
-const Project = () => {
+const Project: React.FC<IProjectProps> = ({ projects }): JSX.Element => {
   return (
     <section id="projects">
       <div className="my-12 pb-16">
@@ -54,9 +36,9 @@ const Project = () => {
                 <SlideUp offset="-300px 0px -300px 0px">
                   <div className="flex flex-col  animate-slideUpCubiBezier animation-delay-2 space-y-6 md:flex-row md:space-x-12">
                     <div className=" md:w-1/2">
-                      <Link href={project.link}>
+                      <Link href={project.all_links[0].url}>
                         <Image
-                          src={project.image}
+                          src={imageParser(project.content[0].asset._ref)}
                           alt=""
                           width={1000}
                           height={1000}
@@ -65,25 +47,49 @@ const Project = () => {
                       </Link>
                     </div>
                     <div className="md:w-1/2">
+                      <div className="flex flex-row space-x-8">
+                        {project.technologies.map((technology, ind) => {
+                          return (
+                            <div key={ind}>
+                              <Image
+                                src={imageParser(technology.logo.asset._ref)}
+                                alt=""
+                                height={50}
+                                width={50}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
                       <h1 className="text-4xl font-bold mb-6">
-                        {project.name}
+                        {project.title}
                       </h1>
                       <p className="text-xl leading-7 mb-4 text-neutral-500  dark:text-neutral-500">
                         {project.description}
                       </p>
                       <div className="flex flex-row align-bottom space-x-4">
-                        <Link href={project.github} target="_blank">
-                          <BsGithub
-                            size={30}
-                            className="hover:-translate-y-1 transition-transform cursor-pointer"
-                          />
-                        </Link>
-                        <Link href={project.link} target="_blank">
-                          <BsArrowUpRightSquare
-                            size={30}
-                            className="hover:-translate-y-1 transition-transform cursor-pointer"
-                          />
-                        </Link>
+                        {project.all_links.map((_link, ind) => {
+                          return (
+                            <div key={ind}>
+                              {_link.name === "Github" && (
+                                <Link href={_link.url}>
+                                  <BsGithub
+                                    size={30}
+                                    className="hover:-translate-y-1 transition-transform cursor-pointer"
+                                  />
+                                </Link>
+                              )}
+                              {_link.name === "Live" && (
+                                <Link href={_link.url} target="_blank">
+                                  <BsArrowUpRightSquare
+                                    size={30}
+                                    className="hover:-translate-y-1 transition-transform cursor-pointer"
+                                  />
+                                </Link>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
