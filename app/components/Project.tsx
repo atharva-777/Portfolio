@@ -8,21 +8,17 @@ import Scroll from "./Scroll";
 import { client } from "../lib/sanity";
 import { ProjectType } from "../lib/interface";
 import { urlFor } from "../lib/sanityImageUrl";
-
-const fetchProjects = async () => {
-  const query = `*[_type=='project']`;
-  const projects = await client.fetch(query);
-  return projects;
-};
+import { fetchProjects } from "../lib/fetchData";
 
 const imageParser = (value: string) => {
   return urlFor(value).url();
 };
 
-const Project = async () => {
-  const projects = (await fetchProjects()) as ProjectType;
-  // console.log(projects);
+interface IProjectProps {
+  projects: ProjectType;
+}
 
+const Project: React.FC<IProjectProps> = ({ projects }): JSX.Element => {
   return (
     <section id="projects">
       <div className="my-12 pb-16">
@@ -72,18 +68,28 @@ const Project = async () => {
                         {project.description}
                       </p>
                       <div className="flex flex-row align-bottom space-x-4">
-                        <Link href={project.all_links[1].url} target="_blank">
-                          <BsGithub
-                            size={30}
-                            className="hover:-translate-y-1 transition-transform cursor-pointer"
-                          />
-                        </Link>
-                        <Link href={project.all_links[0].url} target="_blank">
-                          <BsArrowUpRightSquare
-                            size={30}
-                            className="hover:-translate-y-1 transition-transform cursor-pointer"
-                          />
-                        </Link>
+                        {project.all_links.map((_link, ind) => {
+                          return (
+                            <div key={ind}>
+                              {_link.name === "Github" && (
+                                <Link href={_link.url}>
+                                  <BsGithub
+                                    size={30}
+                                    className="hover:-translate-y-1 transition-transform cursor-pointer"
+                                  />
+                                </Link>
+                              )}
+                              {_link.name === "Live" && (
+                                <Link href={_link.url} target="_blank">
+                                  <BsArrowUpRightSquare
+                                    size={30}
+                                    className="hover:-translate-y-1 transition-transform cursor-pointer"
+                                  />
+                                </Link>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

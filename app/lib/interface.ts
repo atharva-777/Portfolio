@@ -11,48 +11,71 @@ export interface blog{
 
 export type ProjectType = Root2[];
 
-interface Root2 {
-  technologies: Technology[];
+export interface Root2 {
   _createdAt: string;
-  description: string;
-  _id: string;
-  all_links: AllLink[];
   _rev: string;
-  _type: string;
+  description: string;
   title: string;
-  _updatedAt: string;
   content: Content[];
+  technologies: Technology[];
+  all_links: AllLink[];
+  _updatedAt: string;
+  _type: string;
+  _id: string;
+  poster?: Poster;
 }
 
-interface Technology {
+export interface Content {
+  _type: string;
+  _key: string;
+  asset: Asset;
+}
+
+export interface Asset {
+  _ref: string;
+  _type: string;
+}
+
+export interface Technology {
   name: string;
   logo: Logo;
   _key: string;
 }
 
-interface Logo {
-  asset: Asset;
+export interface Logo {
   _type: string;
-}
-
-interface Asset {
-  _ref: string;
-  _type: string;
-}
-
-interface AllLink {
-  name: string;
-  _key: string;
-  url: string;
-}
-
-interface Content {
-  _type: string;
-  _key: string;
   asset: Asset2;
 }
 
-interface Asset2 {
+export interface Asset2 {
   _ref: string;
   _type: string;
+}
+
+export interface AllLink {
+  _key: string;
+  url: string;
+  name: string;
+  logo?: Logo2;
+}
+
+export interface Logo2 {
+  _type: string;
+  asset: Asset3;
+}
+
+export interface Asset3 {
+  _type: string;
+  _ref: string;
+}
+
+export interface Poster {
+  _type: string;
+  caption: string;
+  asset: Asset4;
+}
+
+export interface Asset4 {
+  _type: string;
+  _ref: string;
 }
