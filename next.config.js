@@ -3,12 +3,12 @@ const { hostname } = require('os')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
-    domains: ["images.unsplash.com", "res.cloudinary.com", "cdn.sanity.io"],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
+    remotePatterns: [
+      { hostname: "images.unsplash.com" },
+      { hostname: "res.cloudinary.com" },
+      { hostname: "cdn.sanity.io" },
+    ],
   },
   staticPageGenerationTimeout: 100,
 };
