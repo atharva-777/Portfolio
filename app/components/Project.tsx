@@ -18,7 +18,7 @@ interface IProjectProps {
   projects: ProjectType;
 }
 
-const Project: React.FC<IProjectProps> = ({ projects }): JSX.Element => {
+const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
   return (
     <section id="projects">
       <div className="my-12 pb-16">
