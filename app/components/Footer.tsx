@@ -4,71 +4,143 @@ import {
   AiOutlineLinkedin,
   AiOutlineInstagram,
 } from "react-icons/ai";
-import {TbBrandLeetcode} from 'react-icons/tb'
-import {BiLogoGmail} from 'react-icons/bi'
+import { TbBrandLeetcode } from 'react-icons/tb'
+import { BiLogoGmail } from 'react-icons/bi'
+import { motion } from "framer-motion";
+import { FaHeart } from "react-icons/fa";
 
 const mailId = process.env.NEXT_PUBLIC_EMAIL_ID;
 
 const Footer = () => {
+  const socialLinks = [
+    {
+      name: "Email",
+      icon: <BiLogoGmail size={24} />,
+      href: `mailto:${mailId}`,
+      color: "hover:text-red-400"
+    },
+    {
+      name: "GitHub",
+      icon: <AiOutlineGithub size={24} />,
+      href: "https://github.com/atharva-777",
+      color: "hover:text-gray-300"
+    },
+    {
+      name: "Instagram",
+      icon: <AiOutlineInstagram size={24} />,
+      href: "https://instagram.com/atharvaaaj",
+      color: "hover:text-pink-400"
+    },
+    {
+      name: "LinkedIn",
+      icon: <AiOutlineLinkedin size={24} />,
+      href: "https://www.linkedin.com/in/atharva-jadhav-833149222/",
+      color: "hover:text-blue-400"
+    },
+    {
+      name: "LeetCode",
+      icon: <TbBrandLeetcode size={24} />,
+      href: "https://leetcode.com/atharva_777/",
+      color: "hover:text-yellow-400"
+    }
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
-    <footer
-      className=" mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl"
-      // className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl"
-    >
-      <hr className="w-full h-0.5 mx-auto mt-8 bg-slate-200 border-0"></hr>
-      <div className="mx-auto  p-4 flex flex-col text-center space-y-2  md:flex-row md:justify-between">
-        <div className="flex flex-row items-center justify-center space-x-1">
-          © 2023 Atharva Jadhav
+    <footer className="py-12 bg-gradient-to-t from-slate-900 to-gray-900 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.03) 2px, transparent 2px),
+                         radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.03) 2px, transparent 2px)`,
+        backgroundSize: '40px 40px'
+      }}></div>
+
+      <motion.div
+        className="container mx-auto px-6 relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <div className="text-center mb-8">
+          <motion.h3
+            className="text-2xl font-bold text-white mb-2"
+            variants={containerVariants}
+          >
+            Let&apos;s Connect
+          </motion.h3>
+          <motion.p
+            className="text-gray-400 max-w-md mx-auto"
+            variants={containerVariants}
+          >
+            Feel free to reach out for collaborations, opportunities, or just to say hello!
+          </motion.p>
         </div>
-        <div className="flex flex-row items-center justify-center space-x-3 mb-1">
-          <a href={`mailto:${mailId}`} rel="noreferrer" target="_blank">
-            <BiLogoGmail
-              className="hover:-translate-y-1 transition-transform cursor-pointer "
-              size={30}
-            />
-          </a>
-          <a
-            href="https://github.com/atharva-777"
-            rel="noreferrer"
-            target="_blank"
+
+        {/* Social Links */}
+        <motion.div
+          className="flex justify-center space-x-6 mb-8"
+          variants={containerVariants}
+        >
+          {socialLinks.map((link, index) => (
+            <motion.a
+              key={index}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl text-gray-400 ${link.color} transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:shadow-lg`}
+              whileHover={{
+                y: -5,
+                boxShadow: "0 10px 25px rgba(0,0,0,0.3)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              variants={containerVariants}
+            >
+              {link.icon}
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* Divider */}
+        <motion.div
+          className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8"
+          variants={containerVariants}
+        ></motion.div>
+
+        {/* Copyright */}
+        <motion.div
+          className="text-center"
+          variants={containerVariants}
+        >
+          <motion.p
+            className="text-gray-400 flex items-center justify-center space-x-2"
+            variants={containerVariants}
           >
-            <AiOutlineGithub
-              className="hover:-translate-y-1 transition-transform cursor-pointer"
-              size={30}
-            />
-          </a>
-          <a
-            href="https://instagram.com/atharvaaaj"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <AiOutlineInstagram
-              className="hover:-translate-y-1 transition-transform cursor-pointer "
-              size={30}
-            />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/atharva-jadhav-833149222/"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <AiOutlineLinkedin
-              className="hover:-translate-y-1 transition-transform cursor-pointer "
-              size={30}
-            />
-          </a>
-          <a
-            href="https://leetcode.com/atharva_777/"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <TbBrandLeetcode
-              className="hover:-translate-y-1 transition-transform cursor-pointer "
-              size={30}
-            />
-          </a>
-        </div>
-      </div>
+            <span>© 2026 Atharva Jadhav. Made with</span>
+            <motion.span
+              animate={{
+                scale: [1, 1.2, 1],
+                color: ["#ef4444", "#ec4899", "#8b5cf6", "#ef4444"]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <FaHeart className="text-red-500" />
+            </motion.span>
+          </motion.p>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 };

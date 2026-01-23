@@ -19,7 +19,12 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-white text-black dark:bg-gray-900 dark:selection:bg-gray-900 dark:text-white h-full selection:bg-gray-50`}
       >
-        <ThemeProvider enableSystem={true} attribute="class">
+        <ThemeProvider
+          enableSystem={true}
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange={false}
+        >
           <Navbar />
           {children}
           <Footer />
