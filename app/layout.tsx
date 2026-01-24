@@ -1,8 +1,6 @@
 "use client";
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Navbar from './components/Navbar'
-import { ThemeProvider } from 'next-themes'
 import Footer from './components/Footer';
 import Head from './head';
 const inter = Inter({ subsets: ['latin'] })
@@ -17,18 +15,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <Head />
       <body
-        className={`${inter.className} bg-white text-black dark:bg-gray-900 dark:selection:bg-gray-900 dark:text-white h-full selection:bg-gray-50`}
+        className={`${inter.className} bg-white text-gray-900 selection:bg-blue-100 h-full`}
       >
-        <ThemeProvider
-          enableSystem={true}
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange={false}
-        >
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        {children}
+        <Footer />
       </body>
     </html>
   );

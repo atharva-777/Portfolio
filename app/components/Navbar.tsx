@@ -77,7 +77,7 @@ const Navbar = () => {
 
   return (
     <motion.header
-      className="w-full mx-auto px-4 sm:px-20 fixed dark:bg-slate-900/90 bg-white/90 backdrop-blur-md top-0 z-50 shadow-lg border-b border-gray-200/20 dark:border-gray-700/20 h-16"
+      className="w-full mx-auto px-4 sm:px-20 fixed bg-white/95 backdrop-blur-md top-0 z-50 shadow-lg border-b border-gray-200/50 h-16"
       variants={navVariants}
       initial="hidden"
       animate="visible"
@@ -106,7 +106,7 @@ const Navbar = () => {
             </_link>
             <div className="md:hidden">
               <motion.button
-                className="p-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-white/10 transition-colors"
+                className="p-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
                 onClick={() => setNavbar(!navbar)}
                 whileTap={{ scale: 0.95 }}
               >
@@ -138,7 +138,7 @@ const Navbar = () => {
                     key={idx}
                     to={item.page}
                     className={
-                      "relative block lg:inline-block text-gray-700 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-colors duration-300 cursor-pointer font-medium"
+                      "relative block lg:inline-block text-gray-700 hover:text-purple-500 transition-colors duration-300 cursor-pointer font-medium"
                     }
                     activeClass="active"
                     spy={true}
@@ -163,7 +163,7 @@ const Navbar = () => {
                 ) : null;
               })}
 
-              <Link href='/blog' className="relative block lg:inline-block text-gray-700 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-colors duration-300 cursor-pointer font-medium">
+              <Link href='/blog' className="relative block lg:inline-block text-gray-700 hover:text-purple-500 transition-colors duration-300 cursor-pointer font-medium">
                 <motion.span
                   className="relative z-10"
                   whileHover={{ y: -2 }}
@@ -182,25 +182,14 @@ const Navbar = () => {
                 className="flex items-center justify-center pt-4 md:pt-0"
                 whileHover={{ scale: 1.05 }}
               >
-                {currentTheme === "dark" ? (
-                  <motion.button
-                    onClick={() => setTheme("light")}
-                    className="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-300 shadow-lg"
-                    whileHover={{ rotate: 15 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <RiSunLine size={20} color="#fbbf24" />
-                  </motion.button>
-                ) : (
-                  <motion.button
-                    onClick={() => setTheme("dark")}
-                    className="p-2 bg-slate-200 hover:bg-slate-100 rounded-lg transition-all duration-300 shadow-lg"
-                    whileHover={{ rotate: -15 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <RiMoonFill size={20} color="#1e293b" />
-                  </motion.button>
-                )}
+                <motion.button
+                  onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
+                  className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-300 shadow-lg"
+                  whileHover={{ rotate: 15 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <RiSunLine size={20} className="text-yellow-500" />
+                </motion.button>
               </motion.div>
             </motion.div>
           </div>

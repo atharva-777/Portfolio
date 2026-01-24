@@ -48,11 +48,11 @@ const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-slate-900 to-gray-900 relative overflow-hidden">
-      {/* Background decoration */}
+    <section id="projects" className="py-16 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 relative overflow-hidden">
+      {/* Bright background decoration */}
       <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(236, 72, 153, 0.05) 2px, transparent 2px),
-                         radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.05) 2px, transparent 2px)`,
+        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(236, 72, 153, 0.1) 2px, transparent 2px),
+                         radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.1) 2px, transparent 2px)`,
         backgroundSize: '100px 100px'
       }}></div>
 
@@ -65,13 +65,13 @@ const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
       >
         <motion.div className="text-center mb-16" variants={titleVariants}>
           <motion.div
-            className="inline-block px-4 py-2 bg-pink-500/20 backdrop-blur-sm rounded-full text-sm text-pink-300 mb-4 border border-pink-500/30"
+            className="inline-block px-4 py-2 bg-pink-500/20 backdrop-blur-sm rounded-full text-sm text-pink-700 mb-4 border border-pink-500/30"
             variants={titleVariants}
           >
             My Work
           </motion.div>
           <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-white mb-6"
+            className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
             variants={titleVariants}
           >
             Featured Projects
@@ -89,11 +89,11 @@ const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
-              className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300"
+              className="group bg-white/80 backdrop-blur-sm border border-white/50 rounded-2xl overflow-hidden hover:bg-white/90 transition-all duration-300 shadow-lg"
               variants={cardVariants}
               whileHover={{
                 y: -10,
-                boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
+                boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
               }}
             >
               {/* Project Image */}
@@ -134,11 +134,11 @@ const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition-colors">
                   {project.title}
                 </h3>
 
-                <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                   {project.description}
                 </p>
 
@@ -147,7 +147,7 @@ const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
                   {project.technologies.slice(0, 4).map((technology, ind) => (
                     <motion.div
                       key={ind}
-                      className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center"
+                      className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200"
                       whileHover={{ scale: 1.1 }}
                     >
                       <Image
@@ -160,8 +160,8 @@ const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
                     </motion.div>
                   ))}
                   {project.technologies.length > 4 && (
-                    <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
-                      <span className="text-xs text-gray-400">+{project.technologies.length - 4}</span>
+                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
+                      <span className="text-xs text-gray-600">+{project.technologies.length - 4}</span>
                     </div>
                   )}
                 </div>
@@ -174,7 +174,7 @@ const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
                       href={_link.url}
                       target={_link.name === "Live" ? "_blank" : "_self"}
                       rel={_link.name === "Live" ? "noopener noreferrer" : ""}
-                      className="flex items-center space-x-2 text-sm text-gray-400 hover:text-white transition-colors"
+                      className="flex items-center space-x-2 text-sm text-gray-600 hover:text-purple-600 transition-colors"
                       whileHover={{ x: 5 }}
                     >
                       {_link.name === "Github" && <BsGithub size={16} />}

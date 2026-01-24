@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const Scroll = ({page}:{page:string}) => {
   return (
     <motion.div
-      className="flex flex-row items-center text-center justify-center py-8"
+      className="flex items-center justify-center py-12"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1 }}
@@ -20,7 +20,7 @@ const Scroll = ({page}:{page:string}) => {
         duration={500}
       >
         <motion.div
-          className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 cursor-pointer"
+          className="p-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-purple-500/25"
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.95 }}
           animate={{

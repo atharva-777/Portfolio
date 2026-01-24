@@ -55,11 +55,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-12 bg-gradient-to-t from-slate-900 to-gray-900 relative overflow-hidden">
-      {/* Background decoration */}
+    <footer className="py-12 bg-gradient-to-t from-blue-100 via-purple-50 to-pink-50 relative overflow-hidden">
+      {/* Bright background decoration */}
       <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.03) 2px, transparent 2px),
-                         radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.03) 2px, transparent 2px)`,
+        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 2px, transparent 2px),
+                         radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.1) 2px, transparent 2px)`,
         backgroundSize: '40px 40px'
       }}></div>
 
@@ -72,13 +72,13 @@ const Footer = () => {
       >
         <div className="text-center mb-8">
           <motion.h3
-            className="text-2xl font-bold text-white mb-2"
+            className="text-2xl font-bold text-gray-800 mb-2"
             variants={containerVariants}
           >
             Let&apos;s Connect
           </motion.h3>
           <motion.p
-            className="text-gray-400 max-w-md mx-auto"
+            className="text-gray-600 max-w-md mx-auto"
             variants={containerVariants}
           >
             Feel free to reach out for collaborations, opportunities, or just to say hello!
@@ -96,10 +96,10 @@ const Footer = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl text-gray-400 ${link.color} transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:shadow-lg`}
+              className={`p-3 bg-white/80 backdrop-blur-sm border border-white/50 rounded-xl text-gray-600 ${link.color} transition-all duration-300 hover:bg-white/90 hover:scale-110 hover:shadow-lg`}
               whileHover={{
                 y: -5,
-                boxShadow: "0 10px 25px rgba(0,0,0,0.3)"
+                boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
               }}
               whileTap={{ scale: 0.95 }}
               variants={containerVariants}
@@ -111,7 +111,7 @@ const Footer = () => {
 
         {/* Divider */}
         <motion.div
-          className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8"
+          className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-8"
           variants={containerVariants}
         ></motion.div>
 
@@ -121,7 +121,7 @@ const Footer = () => {
           variants={containerVariants}
         >
           <motion.p
-            className="text-gray-400 flex items-center justify-center space-x-2"
+            className="text-gray-600 flex items-center justify-center space-x-2"
             variants={containerVariants}
           >
             <span>© 2026 Atharva Jadhav. Made with</span>
