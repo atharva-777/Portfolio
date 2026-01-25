@@ -2,7 +2,6 @@ import React from "react";
 import {
   AiOutlineGithub,
   AiOutlineLinkedin,
-  AiOutlineInstagram,
 } from "react-icons/ai";
 import { TbBrandLeetcode } from 'react-icons/tb'
 import { BiLogoGmail } from 'react-icons/bi'
@@ -24,12 +23,6 @@ const Footer = () => {
       icon: <AiOutlineGithub size={24} />,
       href: "https://github.com/atharva-777",
       color: "hover:text-gray-300"
-    },
-    {
-      name: "Instagram",
-      icon: <AiOutlineInstagram size={24} />,
-      href: "https://instagram.com/atharvaaaj",
-      color: "hover:text-pink-400"
     },
     {
       name: "LinkedIn",
@@ -124,20 +117,7 @@ const Footer = () => {
             className="text-gray-600 flex items-center justify-center space-x-2"
             variants={containerVariants}
           >
-            <span>© 2026 Atharva Jadhav. Made with</span>
-            <motion.span
-              animate={{
-                scale: [1, 1.2, 1],
-                color: ["#ef4444", "#ec4899", "#8b5cf6", "#ef4444"]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <FaHeart className="text-red-500" />
-            </motion.span>
+            <span>© 2026 Atharva Jadhav</span>
           </motion.p>
         </motion.div>
       </motion.div>

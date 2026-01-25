@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaJava, FaPython, FaDatabase, FaDocker, FaCloud, FaCode, FaRocket, FaStream, FaCogs, FaTools, FaServer } from "react-icons/fa";
-import { SiSpring, SiApachekafka, SiApachespark, SiApacheflink, SiApacheairflow, SiMysql, SiMongodb, SiPostgresql, SiRedis, SiGit, SiGithub, SiPostman, SiTypescript, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiNextdotjs, SiTailwindcss, SiVite } from "react-icons/si";
+import { SiSpring, SiApachekafka, SiApachespark, SiApacheflink, SiApacheairflow, SiMysql, SiMongodb, SiPostgresql, SiRedis, SiGit, SiGithub, SiPostman, SiTypescript, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiNextdotjs, SiTailwindcss, SiVite, SiGo, SiAmazon, SiCplusplus } from "react-icons/si";
 import Scroll from "./Scroll";
 
 const skillCategories = [
@@ -10,20 +10,20 @@ const skillCategories = [
     title: "Core Technologies",
     icon: <FaCode className="text-2xl text-blue-500" />,
     skills: [
-      { name: "Java", icon: <FaJava className="text-red-500" />, level: 95, color: "bg-red-500" },
-      { name: "Spring Boot", icon: <SiSpring className="text-green-500" />, level: 90, color: "bg-green-500" },
-      { name: "Microservices", icon: <FaServer className="text-purple-500" />, level: 88, color: "bg-purple-500" },
+      { name: "C++", icon: <SiCplusplus className="text-green-500" />, level: 90, color: "bg-cyan-500" },
+      { name: "Java", icon: <FaJava className="text-red-500" />, level: 80, color: "bg-red-500" },
       { name: "Python", icon: <FaPython className="text-yellow-500" />, level: 80, color: "bg-yellow-500" },
+      { name: "Go", icon: <SiGo className="text-cyan-500" />, level: 65, color: "bg-cyan-500" },
     ]
   },
   {
     title: "Data Processing",
     icon: <FaStream className="text-2xl text-cyan-500" />,
     skills: [
-      { name: "Apache Kafka", icon: <SiApachekafka className="text-black" />, level: 92, color: "bg-gray-800" },
-      { name: "Apache Beam", icon: <SiApachespark className="text-blue-600" />, level: 85, color: "bg-blue-600" },
-      { name: "Apache Flink", icon: <SiApacheflink className="text-orange-500" />, level: 82, color: "bg-orange-500" },
-      { name: "Apache Airflow", icon: <SiApacheairflow className="text-blue-400" />, level: 78, color: "bg-blue-400" },
+      { name: "Apache Kafka", icon: <SiApachekafka className="text-black" />, level: 60, color: "bg-gray-800" },
+      { name: "Apache Airflow", icon: <SiApacheairflow className="text-blue-400" />, level: 60, color: "bg-blue-400" },
+      { name: "Apache Flink", icon: <SiApacheflink className="text-orange-500" />, level: 55, color: "bg-orange-500" },
+      { name: "Apache Beam", icon: <SiApachespark className="text-blue-600" />, level: 50, color: "bg-blue-600" },
     ]
   },
   {
@@ -44,6 +44,7 @@ const skillCategories = [
       { name: "Git", icon: <SiGit className="text-orange-600" />, level: 90, color: "bg-orange-600" },
       { name: "GitHub", icon: <SiGithub className="text-gray-800" />, level: 88, color: "bg-gray-800" },
       { name: "Postman", icon: <SiPostman className="text-orange-500" />, level: 82, color: "bg-orange-500" },
+      { name: "AWS", icon: <SiAmazon className="text-orange-400" />, level: 70, color: "bg-orange-400" },
     ]
   },
   {
