@@ -10,10 +10,7 @@ export default async function Home() {
 
   const projects = (await fetchProjects()) as ProjectType;
   return (
-    <main
-      // className='mx-auto mx-w-3xl px-4 sm:px-6 md:max-w-5xl'
-      className="md:max-w-7xl md:mx-auto sm:max-w-5xl mx-8 sm:mx-4 pt-20"
-    >
+    <main >
       <Hero />
       <About />
       <Skills />

@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
-/* Custom scrollbar */
+/* Custom scrollbar with bright colors */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f8fafc;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #db2777);
 }
 
 /* Ensure sections have proper spacing */
 section {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
 }
 
 /* Smooth scrolling */
@@ -28,18 +28,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Bright selection colors */
+::selection {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+}
+
+/* Bright focus styles */
+input:focus, textarea:focus, button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
 /* #img {
     -webkit-mask:url(../public/assets/profile.png) center/contain no-repeat;
 } */
-
-/* body{
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-} */
-
-@media (prefers-color-scheme: dark) {
-    .dark\:bg-stone-900 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(28 25 23 / var(--tw-bg-opacity));
-    }
-}
