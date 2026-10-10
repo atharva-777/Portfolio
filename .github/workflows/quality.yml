@@ -1,0 +1,40 @@
+name: Quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            sanity/package-lock.json
+
+      - name: Install portfolio dependencies
+        run: npm ci
+
+      - name: Check portfolio lint and types
+        run: npm run check
+
+      - name: Build portfolio
+        run: npm run build
+
+      - name: Install Sanity Studio dependencies
+        run: npm --prefix sanity ci
+
+      - name: Check Studio lint and types
+        run: npm --prefix sanity run check
+
+      - name: Build Sanity Studio
+        run: npm --prefix sanity run build

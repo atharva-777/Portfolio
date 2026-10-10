@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Atharva Jadhav | Portfolio
 
-## Getting Started
+Next.js App Router portfolio backed by Sanity, with a separate Sanity Studio in `sanity/`.
 
-First, run the development server:
+## Requirements
+
+- Node.js 24 or newer
+- npm 10 or newer
+- Docker Desktop (optional)
+
+Use the version in `.nvmrc` when using a Node version manager.
+
+## Local Development
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. Run the Sanity Studio separately:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm --prefix sanity ci
+npm --prefix sanity run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Quality Checks
 
-## Learn More
+```bash
+npm run check
+npm run build
+npm --prefix sanity run check
+npm --prefix sanity run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+GitHub Actions runs these checks and production builds for pushes to `main` and pull requests.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Docker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Build and run the production image:
 
-## Deploy on Vercel
+```bash
+docker build -t portfolio:latest .
+docker run --rm -p 3000:3000 portfolio:latest
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See [DOCKER_SETUP.md](DOCKER_SETUP.md) for development containers and deployment notes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Environment
+
+Keep local values in `.env.local`; do not commit credentials. Public build-time values used by the browser should use the `NEXT_PUBLIC_` prefix. Sanity project and dataset configuration currently lives in `app/lib/sanity.ts` and `sanity/sanity.config.ts`.

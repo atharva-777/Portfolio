@@ -1,7 +1,18 @@
+import type { PortableTextBlock } from "@portabletext/types";
+
+export interface BlogImage {
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+  alt?: string;
+}
+
 export interface blog{
     title:string;
     description:string;
-    content:any;
+    content:Array<PortableTextBlock | BlogImage>;
     _id:string;
     slug:{
         current:string;

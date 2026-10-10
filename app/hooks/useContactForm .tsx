@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 
 const useContactForm = () => {
   const [values, setValues] = useState({
@@ -8,11 +8,12 @@ const useContactForm = () => {
     message: "",
   });
 
-  const handleChange = (e: { target: { id: any; value: any; }; }) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const field = e.currentTarget.id as keyof typeof values;
     setValues((prevState) => {
       return {
         ...prevState,
-        [e.target.id]: e.target.value,
+        [field]: e.currentTarget.value,
       };
     });
   };

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Production-optimized Next.js app
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - portfolio-network
+    labels:
+      - "com.portfolio.description=Next.js Portfolio with Sanity CMS"
+
+  # Development service with hot reload
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    restart: unless-stopped
+    networks:
+      - portfolio-network
+    profiles:
+      - dev
+
+networks:
+  portfolio-network:
+    driver: bridge
