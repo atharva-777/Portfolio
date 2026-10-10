@@ -56,31 +56,31 @@ docker run -d -p 3000:3000 --name portfolio portfolio:latest
 #### Production Mode
 ```bash
 # Start the application
-docker-compose up
+docker compose up
 
 # Run in background
-docker-compose up -d
+docker compose up -d
 
 # View logs
-docker-compose logs -f app
+docker compose logs -f app
 
 # Stop the application
-docker-compose down
+docker compose down
 ```
 
 #### Development Mode (with hot reload)
 ```bash
 # Start development environment
-docker-compose --profile dev up app-dev
+docker compose --profile dev up app-dev
 
 # Run in background
-docker-compose --profile dev up -d app-dev
+docker compose --profile dev up -d app-dev
 
 # View logs
-docker-compose logs -f app-dev
+docker compose logs -f app-dev
 
 # Stop development environment
-docker-compose --profile dev down
+docker compose --profile dev down
 ```
 
 ## Docker Compose Services

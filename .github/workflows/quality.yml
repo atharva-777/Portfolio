@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -31,10 +31,13 @@ jobs:
         run: npm run build
 
       - name: Install Sanity Studio dependencies
-        run: npm --prefix sanity ci
+        working-directory: sanity
+        run: npm ci
 
       - name: Check Studio lint and types
-        run: npm --prefix sanity run check
+        working-directory: sanity
+        run: npm run check
 
       - name: Build Sanity Studio
-        run: npm --prefix sanity run build
+        working-directory: sanity
+        run: npm run build
