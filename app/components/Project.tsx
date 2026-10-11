@@ -1,197 +1,70 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { BsGithub, BsArrowUpRightSquare, BsEye } from "react-icons/bs";
-import Scroll from "./Scroll";
-import { ProjectType } from "../lib/interface";
-import { urlFor } from "../lib/sanityImageUrl";
+import Image from 'next/image'
+import { FiArrowUpRight, FiGithub } from 'react-icons/fi'
+import type { ProjectType } from '../lib/interface'
+import { urlFor } from '../lib/sanityImageUrl'
+import Reveal from './Reveal'
 
-const imageParser = (value: string) => {
-  return urlFor(value).url();
-};
-
-interface IProjectProps {
-  projects: ProjectType;
-}
-
-const Project: React.FC<IProjectProps> = ({ projects }): React.ReactElement => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.6 },
-    },
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8 },
-    },
-  };
-
+export default function Project({ projects }: { projects: ProjectType }) {
   return (
-    <section id="projects" className="py-16 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 relative overflow-hidden">
-      {/* Bright background decoration */}
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(236, 72, 153, 0.1) 2px, transparent 2px),
-                         radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.1) 2px, transparent 2px)`,
-        backgroundSize: '100px 100px'
-      }}></div>
+    <section id="work" className="work-section section-wrap">
+      <div className="content-width">
+        <Reveal className="section-heading-row work-heading">
+          <div>
+            <p className="section-index">03 <span>/ SELECTED WORK</span></p>
+            <h2 className="section-title">Built with intent.<br /><em>Made to matter.</em></h2>
+          </div>
+          <p className="section-heading-note">A selection of experiments and shipped work across backend, data, and product.</p>
+        </Reveal>
 
-      <motion.div
-        className="container mx-auto px-6 relative z-10"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <motion.div className="text-center mb-16" variants={titleVariants}>
-          <motion.div
-            className="inline-block px-4 py-2 bg-pink-500/20 backdrop-blur-sm rounded-full text-sm text-pink-700 mb-4 border border-pink-500/30"
-            variants={titleVariants}
-          >
-            My Work
-          </motion.div>
-          <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
-            variants={titleVariants}
-          >
-            Featured Projects
-          </motion.h2>
-          <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto rounded-full"
-            variants={titleVariants}
-          ></motion.div>
-        </motion.div>
+        {projects.length > 0 ? (
+          <div className="project-list">
+            {projects.map((project, index) => {
+              const imageRef = project.poster?.asset?._ref ?? project.content?.[0]?.asset?._ref
+              const imageUrl = imageRef ? urlFor(imageRef).width(1400).height(900).fit('crop').url() : null
 
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-        >
-          {projects.map((project, idx) => (
-            <motion.div
-              key={idx}
-              className="group bg-white/80 backdrop-blur-sm border border-white/50 rounded-2xl overflow-hidden hover:bg-white/90 transition-all duration-300 shadow-lg"
-              variants={cardVariants}
-              whileHover={{
-                y: -10,
-                boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
-              }}
-            >
-              {/* Project Image */}
-              <div className="relative overflow-hidden">
-                <motion.div
-                  className="aspect-video overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Image
-                    src={imageParser(project.content[0].asset._ref)}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-300"
-                  />
-                </motion.div>
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="flex space-x-4">
-                    {project.all_links.map((_link, ind) => (
-                      <motion.a
-                        key={ind}
-                        href={_link.url}
-                        target={_link.name === "Live" ? "_blank" : "_self"}
-                        rel={_link.name === "Live" ? "noopener noreferrer" : ""}
-                        className="p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-all duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {_link.name === "Github" && <BsGithub size={20} />}
-                        {_link.name === "Live" && <BsEye size={20} />}
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 4).map((technology, ind) => (
-                    <motion.div
-                      key={ind}
-                      className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <Image
-                        src={imageParser(technology.logo.asset._ref)}
-                        alt={technology.name || `Tech ${ind}`}
-                        width={20}
-                        height={20}
-                        className="object-contain"
-                      />
-                    </motion.div>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
-                      <span className="text-xs text-gray-600">+{project.technologies.length - 4}</span>
+              return (
+                <Reveal key={project._id} delay={Math.min(index * 0.06, 0.24)}>
+                  <article className="project-row">
+                    <div className="project-visual">
+                      {imageUrl ? (
+                        <Image src={imageUrl} alt={`${project.title} project preview`} fill sizes="(min-width: 900px) 48vw, 100vw" priority={index === 0} />
+                      ) : (
+                        <div className="project-image-empty"><span>{String(index + 1).padStart(2, '0')}</span><strong>{project.title}</strong></div>
+                      )}
+                      <span className="project-counter">{String(index + 1).padStart(2, '0')}</span>
                     </div>
-                  )}
-                </div>
-
-                {/* Links */}
-                <div className="flex space-x-3">
-                  {project.all_links.map((_link, ind) => (
-                    <motion.a
-                      key={ind}
-                      href={_link.url}
-                      target={_link.name === "Live" ? "_blank" : "_self"}
-                      rel={_link.name === "Live" ? "noopener noreferrer" : ""}
-                      className="flex items-center space-x-2 text-sm text-gray-600 hover:text-purple-600 transition-colors"
-                      whileHover={{ x: 5 }}
-                    >
-                      {_link.name === "Github" && <BsGithub size={16} />}
-                      {_link.name === "Live" && <BsEye size={16} />}
-                      <span>{_link.name}</span>
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      <Scroll page="contact" />
+                    <div className="project-info">
+                      <p className="eyebrow">CASE STUDY <span>/</span> {String(index + 1).padStart(2, '0')}</p>
+                      <h3>{project.title}</h3>
+                      <p className="project-summary">{project.description}</p>
+                      {!!project.technologies?.length && (
+                        <ul className="project-tech" aria-label="Technologies used">
+                          {project.technologies.map((technology) => <li key={technology._key}>{technology.name}</li>)}
+                        </ul>
+                      )}
+                      {!!project.all_links?.length && (
+                        <div className="project-links">
+                          {project.all_links.map((link) => {
+                            const external = /^https?:\/\//.test(link.url)
+                            return (
+                              <a key={link._key} href={link.url} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
+                                {link.name === 'Github' ? <FiGithub aria-hidden="true" /> : <FiArrowUpRight aria-hidden="true" />}
+                                {link.name}
+                              </a>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                </Reveal>
+              )
+            })}
+          </div>
+        ) : (
+          <p className="empty-work">New work is being prepared. Come back soon.</p>
+        )}
+      </div>
     </section>
-  );
-};
-
-export default Project;
+  )
+}

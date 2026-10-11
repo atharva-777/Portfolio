@@ -1,14 +1,12 @@
 # Multi-stage build for optimized production image
 # Stage 1: Dependencies
-FROM node:20-alpine AS deps
+FROM node:24-alpine AS deps
 WORKDIR /app
-# Copy package.json only (don't assume yarn.lock exists)
-COPY package.json ./
-# Install dependencies with npm (works whether package-lock exists or not)
-RUN npm install --no-audit --no-fund
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
 
 # Stage 2: Builder
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 WORKDIR /app
 # Copy package.json and node_modules from deps stage
 COPY package.json ./
@@ -19,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 3: Runner (Production)
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -30,9 +28,8 @@ RUN adduser --system --uid 1001 nextjs
 
 # Copy necessary files from builder
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 # Set proper permissions
 RUN chown -R nextjs:nodejs /app
@@ -47,5 +44,4 @@ ENV PORT=3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
 
-# Start using `next start` which serves the built `.next` folder
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]

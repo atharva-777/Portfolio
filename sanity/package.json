@@ -2,12 +2,18 @@
   "name": "portfolio-blog",
   "private": true,
   "version": "1.0.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
+    "lint": "eslint sanity.config.ts schemas --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy"
   },
@@ -15,20 +21,19 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^3.14.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
-    "sanity": "^3.14.2",
-    "styled-components": "^5.3.9"
+    "@sanity/vision": "^5.31.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-is": "^19.3.0",
+    "sanity": "^5.31.2",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^2.0.4",
-    "@types/react": "^18.0.25",
-    "@types/styled-components": "^5.1.26",
-    "eslint": "^8.6.0",
-    "prettier": "^2.8.8",
-    "typescript": "^4.9.5"
+    "@sanity/eslint-config-studio": "^7.0.0",
+    "@types/react": "^19.3.0",
+    "eslint": "^10.12.0",
+    "prettier": "^3.9.9",
+    "typescript": "5.9.3"
   },
   "prettier": {
     "semi": false,
