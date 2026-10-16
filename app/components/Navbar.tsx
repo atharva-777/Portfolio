@@ -6,10 +6,10 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
-  { label: 'Work', href: '#work' },
-  { label: 'About', href: '#about' },
-  { label: 'Expertise', href: '#expertise' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: '/#work' },
+  { label: 'About', href: '/#about' },
+  { label: 'Expertise', href: '/#expertise' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export default function Navbar() {
@@ -18,10 +18,10 @@ export default function Navbar() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <a className="wordmark" href="#home" aria-label="Atharva Jadhav, home">
+        <Link className="wordmark" href="/#home" aria-label="Atharva Jadhav, home">
           <span className="wordmark-mark">AJ</span>
           <span>Atharva Jadhav</span>
-        </a>
+        </Link>
         <button
           type="button"
           className="icon-button menu-toggle"
@@ -34,9 +34,9 @@ export default function Navbar() {
         </button>
         <nav id="primary-navigation" className={`site-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           {links.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
+            <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
               {link.label}
-            </a>
+            </Link>
           ))}
           <Link className="nav-blog" href="/blog">Journal <span aria-hidden="true">↗</span></Link>
           <ThemeToggle />
